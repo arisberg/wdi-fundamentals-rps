@@ -44,13 +44,13 @@ function getWinner(playerMove,computerMove) {
         winner = 'tie';
     }
     else if (playerMove == 'rock'){
-        winner = (computerMove != 'scissors') ? 'computer': 'player';    }
+        winner = (computerMove == 'paper') ? 'computer': 'player';    }
     
     else if (playerMove == 'scissors'){
-        winner = (computerMove != 'rock') ? 'computer' : 'player';
+        winner = (computerMove == 'rock') ? 'computer' : 'player';
     }
     else if (playerMove == 'paper') {
-        winner = (computerMove != 'scissors') ? 'computer': 'player';
+        winner = (computerMove == 'scissors') ? 'computer': 'player';
     }
     return winner;
 }
@@ -60,7 +60,26 @@ function playToFive() {
     var playerWins = 0;
     var computerWins = 0;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
+    while (playerWins < 5 && computerWins < 5) {
+        var playerMove = getPlayerMove();
+        var computerMove = getComputerMove();
+        var winner = getWinner(playerMove,computerMove);
+        if (winner==='player') {
+            playerWins += 1;
+        }
+        else if (winner==='computer'){
+            computerWins += 1;
+        }
+        console.log("You chose " + playerMove + " and the computer chose " + computerMove);
+        console.log("The winner is " + winner);
+        console.log("The score is you: " + playerWins + " to Computer: " + computerWins);
+    }
+    if (playerWins>computerWins){
+        console.log("You win!");
+    }
+    else {
+        console.log("The computer wins. Better luck next time.");
+    }
     return [playerWins, computerWins];
 }
 
